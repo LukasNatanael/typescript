@@ -1,0 +1,9 @@
+// serve para modificar as configurações padões do compilador
+{
+    "compilerOptions": {
+        "outFile": "main.js",
+        "target": "ESNEXT"
+        // ESNEXT -> irá utilizar sempre a versão mais recente do Ecma Script
+        // a versão pode ser definida também de forma manual: ES3, ES2015...
+    }
+}
