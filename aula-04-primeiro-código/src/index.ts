@@ -1,34 +1,30 @@
-function sendSpaceship(name: string, captain: string) {
+const sendSpaceShip = ( name: string, captain: string) => {
     const spaceship = {
-      name,
-      captain,
-      speed: 20,
-      inMission: true,
-      crew: []
+        name,
+        captain,
+        speed: 20,
+        inMission: true,
+        crew: []
     }
-  
-    alert(`A nave ${spaceship.name} comandada pelo capitão ${spaceship.captain} foi enviada em uma missão.`)
-  
+
+    alert(`A nave ${spaceship.name} comandada pelo capitão ${spaceship.captain} foi enviada para uma missão.`)
     return spaceship
 }
 
-function accelerate(targetSpeed: number, spaceship: { name: string; speed: number; }) {
-    if (spaceship.speed > targetSpeed) {
-        alert(`Reduzindo a velocidade da ${spaceship.name} para ${targetSpeed}...`)
-    } else if (spaceship.speed < targetSpeed) {
-        alert(`Aumentando a velocidade da ${spaceship.name} para ${targetSpeed}...`)
-    } else {
-        alert(`Mantendo a velocidade da ${spaceship.name}...`)
+const accelerate = ( targetSpeed: number, spaceship: { name: string, speed: number } ) => {
+    if( targetSpeed < spaceship.speed ) {
+        alert(`Reducing speed to ${targetSpeed}km/h`)
+    }
+    else if( targetSpeed > spaceship.speed ) {
+        alert(`Increasing speed to ${targetSpeed}km/h`)
+    }
+    else {
+        alert(`Maintaining speed at ${targetSpeed}km/h`)
     }
 }
 
-const spaceshipName = prompt('Insira o nome da nave a ser enviada:')
-const spaceshipCaptain = prompt('Insira o nome do capitão da nave:')
-
-sendSpaceship(spaceshipName, spaceshipCaptain)
-
-const currentShip = sendSpaceship(spaceshipName, spaceshipCaptain)
-
-const speed = Number(prompt('Insira a velocidade para a qual deseja acelerar:'))
-
-accelerate(speed, currentShip)
+const spaceshipName    = prompt('Inform the spaceship name: ')
+const spaceshipCaptain = prompt('Inform the spaceship captain: ')
+const spaceship = sendSpaceShip( spaceshipName, spaceshipCaptain )
+const spaceshipSpeed   = Number(prompt('Inform the spaceship speed: '))
+accelerate( spaceshipSpeed, spaceship )
