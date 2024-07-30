@@ -1,15 +1,18 @@
 import * as promptSync from 'prompt-sync'
 
+console.clear()
 const input = promptSync()
-
 const spaceships: any[] = []
 
-const saveSpaceship = ( name:string, pilot:string, crewLimit:number, crew:string[], inMission:false ) => {
+const saveSpaceship = ( name:string, pilot:string, crewLimit:number, crew:string, inMission?:false ) => {
+
+    const crews = crew.split(',')
+    
     const spaceship = {
         name,
         pilot,
         crewLimit,
-        crew,
+        crews,
         inMission
     }
 
@@ -19,21 +22,29 @@ const saveSpaceship = ( name:string, pilot:string, crewLimit:number, crew:string
 }
 const addCreaw = () => {}
 const sendToMission = () => {}
-const listSpaceships = () => {}
+const listSpaceships = () => {
+    spaceships.forEach( ship => {
+        console.log({
+            name: ship.name,
+            inMission: ship.inMission 
+        })
+    } )
+}
 
-const fireStar = saveSpaceship( 'Fire Star', 'LK Big', 30, [ 'John Doe', 'Ciclano Silva' ], false )
-console.log(fireStar)
+const fireStar = saveSpaceship( 'Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva', false )
+const iceStar = saveSpaceship( 'Ice Star', 'VT', 30, 'Lukas, João' , false )
 
-const spaceshipName      = input('Informe o nome da nave: ')
-const spaceshipPilot     = input('Informe o nome do piloto: ')
-const spaceshipCrewLimit = Number(input('Informe o número máximo de tripulantes: '))
-const spaceshipCrews     = input('Informe o nome dos tripulantes (separando os por vírgula): ')
+// console.clear()
+// const spaceshipName      = input('Informe o nome da nave: ')
+// const spaceshipPilot     = input('Informe o nome do piloto: ')
+// const spaceshipCrewLimit = Number(input('Informe o número máximo de tripulantes: '))
+// const spaceshipCrews     = input('Informe o nome dos tripulantes (separando os por vírgula): ')
 
-const spaceshipOne = saveSpaceship( 
-    spaceshipName,
-    spaceshipPilot,
-    spaceshipCrewLimit,
-    spaceshipCrews,
-    false
-)
+// const spaceshipOne = saveSpaceship( 
+//     spaceshipName,
+//     spaceshipPilot,
+//     spaceshipCrewLimit,
+//     spaceshipCrews
+// )
 
+listSpaceships()
