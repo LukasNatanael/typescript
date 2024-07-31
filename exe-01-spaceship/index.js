@@ -5,20 +5,48 @@ console.clear();
 var input = promptSync();
 var spaceships = [];
 var saveSpaceship = function (name, pilot, crewLimit, crew, inMission) {
-    var crews = crew.split(',');
+    var crews = crew.split(', ');
     var spaceship = {
         name: name,
         pilot: pilot,
         crewLimit: crewLimit,
         crews: crews,
-        inMission: inMission
+        inMission: false
     };
     console.log("".concat(spaceship.name, " was saved with sucessful!"));
     spaceships.push(spaceship);
     return spaceship;
 };
-var addCreaw = function () { };
-var sendToMission = function () { };
+var addCreaw = function (spaceship, crewName) {
+    var _a;
+    var newCrews = crewName.split(', ');
+    try {
+        var crews = spaceship.crews.split(', ');
+        if (newCrews.length <= spaceship.crewLimit) {
+            crews.push.apply(crews, newCrews);
+            spaceship.crews = crews;
+            console.log('\nTabela de tripulantes');
+            console.table(spaceship.crews);
+        }
+        else {
+            console.log('O número máximo de tripulantes foi excedido. Por favor, remova algum tripulante.');
+        }
+    }
+    catch (_b) {
+        if (newCrews.length <= spaceship.crewLimit) {
+            (_a = spaceship.crews).push.apply(_a, newCrews);
+            console.log('\nTabela de tripulantes');
+            console.table(spaceship.crews);
+        }
+        else {
+            console.log('O número máximo de tripulantes foi excedido. Por favor, remova algum tripulante.');
+        }
+    }
+};
+var sendToMission = function (spaceship) {
+    spaceship.inMission = true;
+    console.log("A espa\u00E7onave ".concat(spaceship.name, " foi enviada para uma miss\u00E3o!"));
+};
 var listSpaceships = function () {
     spaceships.forEach(function (ship) {
         console.log({
@@ -27,8 +55,10 @@ var listSpaceships = function () {
         });
     });
 };
-var fireStar = saveSpaceship('Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva', false);
-var iceStar = saveSpaceship('Ice Star', 'VT', 30, 'Lukas, João', false);
+var fireStar = saveSpaceship('Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva');
+sendToMission(fireStar);
+addCreaw(fireStar, 'Matheus, Jorge, Ryan, Bryan');
+addCreaw(saveSpaceship('Ice Star', 'VT', 30, 'Lukas, João'), 'Ciclano da Silva');
 // console.clear()
 // const spaceshipName      = input('Informe o nome da nave: ')
 // const spaceshipPilot     = input('Informe o nome do piloto: ')
