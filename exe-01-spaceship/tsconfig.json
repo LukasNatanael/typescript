@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                                  // Set the JavaScript language version for emitted JavaScript and include 
+    "skipLibCheck": true                                 // Skip type checking all .d.ts files. */
+  },
+  "files": [
+    "index.ts"
+  ]
+}
