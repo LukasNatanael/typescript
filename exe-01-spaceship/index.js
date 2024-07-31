@@ -4,17 +4,17 @@ var promptSync = require("prompt-sync");
 console.clear();
 var input = promptSync();
 var spaceships = [];
-var saveSpaceship = function (name, pilot, crewLimit, crew, inMission) {
-    var crews = crew.split(', ');
+var addSpaceship = function (name, pilot, crewLimit) {
+    // const crews = crew.split(', ')
     var spaceship = {
         name: name,
         pilot: pilot,
         crewLimit: crewLimit,
-        crews: crews,
+        crew: [],
         inMission: false
     };
-    console.log("".concat(spaceship.name, " was saved with sucessful!"));
     spaceships.push(spaceship);
+    console.log("".concat(spaceship.name, " was saved with sucessful!"));
     return spaceship;
 };
 var addCreaw = function (spaceship, crewName) {
@@ -55,10 +55,10 @@ var listSpaceships = function () {
         });
     });
 };
-var fireStar = saveSpaceship('Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva');
-sendToMission(fireStar);
-addCreaw(fireStar, 'Matheus, Jorge, Ryan, Bryan');
-addCreaw(saveSpaceship('Ice Star', 'VT', 30, 'Lukas, João'), 'Ciclano da Silva');
+// const fireStar = saveSpaceship( 'Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva' )
+// sendToMission(fireStar)
+// addCreaw( fireStar, 'Matheus, Jorge, Ryan, Bryan' )
+// addCreaw( saveSpaceship( 'Ice Star', 'VT', 30, 'Lukas, João') , 'Ciclano da Silva' )
 // console.clear()
 // const spaceshipName      = input('Informe o nome da nave: ')
 // const spaceshipPilot     = input('Informe o nome do piloto: ')

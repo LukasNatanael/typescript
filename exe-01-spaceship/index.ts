@@ -4,23 +4,24 @@ console.clear()
 const input = promptSync()
 const spaceships: any[] = []
 
-const saveSpaceship = ( name:string, pilot:string, crewLimit:number, crew:string, inMission?:boolean ) => {
+const addSpaceship = ( name:string, pilot:string, crewLimit:number) => {
 
-    const crews = crew.split(', ')
+    // const crews = crew.split(', ')
     
     const spaceship = {
         name,
         pilot,
         crewLimit,
-        crews,
+        crew:[],
         inMission: false
     }
 
-    console.log(`${spaceship.name} was saved with sucessful!`)
     spaceships.push( spaceship )
+    console.log(`${spaceship.name} was saved with sucessful!`)
     return spaceship
 }
-const addCreaw = ( spaceship: {name:string, pilot:string, crewLimit:number, crews:any, inMission?:boolean}, crewName:string ) => {
+
+const addCreaw = ( spaceship: {name:string, pilot:string, crewLimit:number, crews:any}, crewName:string ) => {
     let newCrews = crewName.split(', ')
     try {
         const crews = spaceship.crews.split(', ')
@@ -66,10 +67,10 @@ const listSpaceships = () => {
     } )
 }
 
-const fireStar = saveSpaceship( 'Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva' )
-sendToMission(fireStar)
-addCreaw( fireStar, 'Matheus, Jorge, Ryan, Bryan' )
-addCreaw( saveSpaceship( 'Ice Star', 'VT', 30, 'Lukas, João') , 'Ciclano da Silva' )
+// const fireStar = saveSpaceship( 'Fire Star', 'LK Big', 30, 'John Doe, Ciclano Silva' )
+// sendToMission(fireStar)
+// addCreaw( fireStar, 'Matheus, Jorge, Ryan, Bryan' )
+// addCreaw( saveSpaceship( 'Ice Star', 'VT', 30, 'Lukas, João') , 'Ciclano da Silva' )
 
 
 // console.clear()
