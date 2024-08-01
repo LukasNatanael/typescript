@@ -4,6 +4,8 @@ let pi: 3.14
 // unions => define valores padrões para uma variável, como se fossem opções 
 type Planet = "Mercúrio" | "Vênus" | "Terra" | "Marte" | "Júpiter" | "Saturno" | "Urano" | "Netuno" | "Plutão"
 
+let option: 'Yes' | 'Maybe' | 'No'
+
 let homePlanet: Planet
 homePlanet = 'Terra'
 

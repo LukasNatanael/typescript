@@ -1,0 +1,19 @@
+{
+  "name": "exe-02-criando-tipo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ansi-regex": "^4.1.1",
+    "prompt-sync": "^4.2.0",
+    "strip-ansi": "^5.2.0",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "build": "tsc index.ts",
+    "watch": "tsc index.ts --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
