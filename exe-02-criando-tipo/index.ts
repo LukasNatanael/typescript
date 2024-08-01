@@ -44,3 +44,65 @@ function removeSatellite( name: string, planet: Planet ) {
     console.log(`O satélite ${name} foi removido do planeta ${planet.name}`)
 
 }
+
+function validateSituation() {
+    let situation: PlanetSituation = 'Inexplorado'
+    let validSituation = false
+
+    while(!validSituation) {
+        console.log(
+            '1. Habitado'   +
+            '2. Habitável'  +
+            '3. Inabitável' +
+            '4. Inesplorado')
+        const situationInput = Number(prompt('Informe a situação do planeta: '))
+        switch(situationInput) {
+            case 1:
+                situation = 'Habitado'
+                validSituation = true
+                break               
+            case 2:
+                situation = 'Habitável'
+                validSituation = true
+                break               
+            case 3:
+                situation = 'Inabitável'
+                validSituation = true
+                break               
+            case 4:
+                situation = 'Inexplorado'
+                validSituation = true
+                break
+            default:
+                console.log('A opção informada é inválida! Por favor verifique e tente novamente.')
+                break      
+        }
+    }
+
+    return situation
+}
+
+function validPlanet( callbackFunction: (planet: Planet) => void ) {
+    const planetName = prompt('Informe o nome do planeta: ')
+    const planet = findPlanet(planetName)
+
+    if(planet) {
+        callbackFunction(planet)
+    }
+    else {
+        console.log('Planeta não encontrado! Informe um planeta válido.')
+    }
+}
+
+
+function setCoordinates() {
+    const planetName = prompt('Informe o nome do planeta: ')
+    const coordA     = prompt('Informe a coordenada A: ')
+    const coordB     = prompt('Informe a coordenada B: ')
+    const coordC     = prompt('Informe a coordenada C: ')
+    const coordD     = prompt('Informe a coordenada D: ')
+
+    const planet = findPlanet(planetName)
+    
+    // const confirmation = validPlanet(planet)
+}
