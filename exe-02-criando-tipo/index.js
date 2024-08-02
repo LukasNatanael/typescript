@@ -16,6 +16,35 @@ function findPlanet(name) {
     var planet = planets.find(function (planet) { return planet.name === name; });
     return planet !== null && planet !== void 0 ? planet : false;
 }
+function confirmation() {
+    var confirmation;
+    var validConfirmation = false;
+    while (!validConfirmation) {
+        var confirmationInput = prompt('[S] Sim [N] Não: ');
+        switch (confirmationInput) {
+            case 'Sim':
+                confirmation = 'Sim';
+                validConfirmation = true;
+                break;
+            case 'Não':
+                confirmation = 'Não';
+                validConfirmation = true;
+                break;
+            case 'S':
+                confirmation = 'S';
+                validConfirmation = true;
+                break;
+            case 'N':
+                confirmation = 'N';
+                validConfirmation = true;
+                break;
+            default:
+                console.log('A opção informada é inválida! Por favor verifique e tente novamente.');
+                break;
+        }
+    }
+    return confirmation;
+}
 function updateSituation(situation, planet) {
     planet.situation = situation;
     console.log("A situa\u00E7\u00E3o do planeta ".concat(planet.name, " foi alterada para  ").concat(situation));
@@ -32,10 +61,10 @@ function validateSituation() {
     var situation = 'Inexplorado';
     var validSituation = false;
     while (!validSituation) {
-        console.log('1. Habitado' +
-            '2. Habitável' +
-            '3. Inabitável' +
-            '4. Inesplorado');
+        console.log('1. Habitado \n' +
+            '2. Habitável \n' +
+            '3. Inabitável \n' +
+            '4. Inesplorado \n');
         var situationInput = Number(prompt('Informe a situação do planeta: '));
         switch (situationInput) {
             case 1:
@@ -72,11 +101,17 @@ function validPlanet(callbackFunction) {
     }
 }
 function setCoordinates() {
-    var planetName = prompt('Informe o nome do planeta: ');
+    var planet = prompt('Informe o nome do planeta: ');
     var coordA = prompt('Informe a coordenada A: ');
     var coordB = prompt('Informe a coordenada B: ');
     var coordC = prompt('Informe a coordenada C: ');
     var coordD = prompt('Informe a coordenada D: ');
-    var planet = findPlanet(planetName);
-    // const confirmation = validPlanet(planet)
+    var situation = validateSituation();
+    console.log("Confirmar o registro do planeta ".concat(planet, " ? \n") +
+        "Coordenadas: (".concat(coordA, ", ").concat(coordB, ", ").concat(coordC, ", ").concat(coordD, ") \n") +
+        "Situa\u00E7\u00E3o: ".concat(situation, " \n"));
+    var conf = confirmation();
+    if (conf) {
+        addPlanet(planet, [coordA, coordB, coordC, coordD], situation);
+    }
 }
