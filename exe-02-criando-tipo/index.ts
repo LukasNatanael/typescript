@@ -3,7 +3,7 @@ const prompt = promptSync()
 
 type PlanetSituation = 'Habitado' | 'Habitável' | 'Inabitável' | 'Inexplorado'
 type PlanetCoordinates = [ number, number, number, number ]
-type confirmationOptions = 'Sim' | 'S' | 'Não' | 'N'
+type confirmationOptions = 'Sim' | 's' | 'Não' | 'n'
 
 type Planet = {
     name: string
@@ -47,12 +47,12 @@ function confirmation() {
                 confirmation = 'Não'
                 validConfirmation = true
                 break               
-            case 'S':
-                confirmation = 'S'
+            case 's':
+                confirmation = 's'
                 validConfirmation = true
                 break               
-            case 'N':
-                confirmation = 'N'
+            case 'n':
+                confirmation = 'n'
                 validConfirmation = true
                 break
             default:
@@ -87,6 +87,7 @@ function validateSituation() {
 
     while(!validSituation) {
         console.log(
+            '\nInforme a situação do planeta: \n'   +
             '1. Habitado \n'   +
             '2. Habitável \n'  +
             '3. Inabitável \n' +
@@ -130,7 +131,7 @@ function validPlanet( callbackFunction: (planet: Planet) => void ) {
     }
 }
 
-function setCoordinates() {
+function registerPlanet() {
     const planet = prompt('Informe o nome do planeta: ')
     const coordA     = prompt('Informe a coordenada A: ')
     const coordB     = prompt('Informe a coordenada B: ')
@@ -140,7 +141,7 @@ function setCoordinates() {
     const situation = validateSituation()
     
     console.log(
-        `Confirmar o registro do planeta ${planet} ? \n` +
+        `\nConfirmar o registro do planeta ${planet} ? \n` +
         `Coordenadas: (${coordA}, ${coordB}, ${coordC}, ${coordD}) \n`+
         `Situação: ${situation} \n`
     )
@@ -151,3 +152,86 @@ function setCoordinates() {
         addPlanet( planet, [coordA, coordB, coordC, coordD], situation )
     }
 }
+
+function updatePlanet() {
+    validPlanet( planet => {
+        const situation = validateSituation()
+        updateSituation( situation, planet )
+    } )
+}
+
+function listPlanets() {
+    let list = 'Planetas: \n'
+
+    planets.forEach( planet => {
+        const [a, b, c, d] = planet.coordinates
+
+        list += 
+        `   Nome: ${planet.name} \n` +
+        `   Coordenadas: (${a}, ${b}, ${c}, ${d}) \n` +
+        `   Situação: ${planet.situation} \n` +
+        `   Satelites (${planet.satellites.length}): \n`
+
+        planet.satellites.forEach( satellite => list += `       - ${satellite} \n` )
+    })
+
+    console.log(list)
+}
+
+function menu() {
+    const menu = 
+    'Menu\n' +
+    '1. Registrar um novo planeta\n' +
+    '2. Atualizar situação do planeta\n' +
+    '3. Adicionar satélite ao planeta\n' +
+    '4. Remover um satélite do planeta\n' +
+    '5. Listar todos os planetas\n' +
+    '6. Sair\n'
+
+    let userOption = 0
+
+    while( userOption != 6 ) {
+        console.clear()
+        console.log(menu)
+        userOption = Number(prompt('Informe uma opção: '))
+
+        switch(userOption) {
+            case 1:
+                console.clear()
+                registerPlanet()
+                break
+            case 2:
+                console.clear()
+                updatePlanet()
+                break
+            case 3:
+                console.clear()
+                validPlanet( planet => {
+                        const satellite = prompt('Informe o nome do satélite a ser adicionado: ')
+                        addSatellite(satellite, planet)
+                    }
+                )
+                break
+            case 4:
+                console.clear()
+                validPlanet( planet => {
+                        const satellite = prompt('Informe o nome do satélite a ser removido: ')
+                        removeSatellite(satellite, planet)
+                    }
+                )
+                break
+            case 5:
+                console.clear()
+                listPlanets()
+                break
+            case 6:
+                break
+            default:
+                console.log('Programa encerrado!')
+                
+        }
+    }
+
+}
+
+menu()
