@@ -127,7 +127,7 @@ function listPlanets() {
     planets.forEach(function (planet) {
         var _a = planet.coordinates, a = _a[0], b = _a[1], c = _a[2], d = _a[3];
         list +=
-            "   Nome: ".concat(planet.name, " \n") +
+            "   \nNome: ".concat(planet.name, " \n") +
                 "   Coordenadas: (".concat(a, ", ").concat(b, ", ").concat(c, ", ").concat(d, ") \n") +
                 "   Situa\u00E7\u00E3o: ".concat(planet.situation, " \n") +
                 "   Satelites (".concat(planet.satellites.length, "): \n");
@@ -136,6 +136,7 @@ function listPlanets() {
     console.log(list);
 }
 function menu() {
+    console.clear();
     var menu = 'Menu\n' +
         '1. Registrar um novo planeta\n' +
         '2. Atualizar situação do planeta\n' +
@@ -145,7 +146,6 @@ function menu() {
         '6. Sair\n';
     var userOption = 0;
     while (userOption != 6) {
-        console.clear();
         console.log(menu);
         userOption = Number(prompt('Informe uma opção: '));
         switch (userOption) {
@@ -176,9 +176,10 @@ function menu() {
                 listPlanets();
                 break;
             case 6:
+                console.log('Programa encerrado!');
                 break;
             default:
-                console.log('Programa encerrado!');
+                console.log('Opção inválida! Informe uma das opções disponíveis.');
         }
     }
 }

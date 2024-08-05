@@ -167,7 +167,7 @@ function listPlanets() {
         const [a, b, c, d] = planet.coordinates
 
         list += 
-        `   Nome: ${planet.name} \n` +
+        `   \nNome: ${planet.name} \n` +
         `   Coordenadas: (${a}, ${b}, ${c}, ${d}) \n` +
         `   Situação: ${planet.situation} \n` +
         `   Satelites (${planet.satellites.length}): \n`
@@ -179,6 +179,7 @@ function listPlanets() {
 }
 
 function menu() {
+    console.clear()
     const menu = 
     'Menu\n' +
     '1. Registrar um novo planeta\n' +
@@ -191,7 +192,6 @@ function menu() {
     let userOption = 0
 
     while( userOption != 6 ) {
-        console.clear()
         console.log(menu)
         userOption = Number(prompt('Informe uma opção: '))
 
@@ -225,9 +225,10 @@ function menu() {
                 listPlanets()
                 break
             case 6:
+                console.log('Programa encerrado!')
                 break
             default:
-                console.log('Programa encerrado!')
+                console.log('Opção inválida! Informe uma das opções disponíveis.')
                 
         }
     }
