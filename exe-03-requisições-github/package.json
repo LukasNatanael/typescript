@@ -1,0 +1,11 @@
+{
+  "description": "",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "build": "tsc index.ts",
+    "watch": "tsc index.ts --watch"
+  }
+}
