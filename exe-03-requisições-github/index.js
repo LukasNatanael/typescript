@@ -36,10 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var promptSync = require("prompt-sync");
+var prompt = promptSync();
 var usersList = [];
-function getUser(username) {
+var user;
+function fetchUser(username) {
     return __awaiter(this, void 0, void 0, function () {
-        var user, response;
+        var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fetch("https://api.github.com/users/".concat(username))
@@ -59,13 +62,16 @@ function getUser(username) {
                         public_repos: response.public_repos,
                         repos_url: response.repos_url,
                     };
-                    // not working
-                    usersList.push(user);
-                    console.log(user);
-                    return [2 /*return*/];
+                    return [2 /*return*/, user];
             }
         });
     });
 }
+function getUser(username) {
+    // const user = prompt('Informe um username a ser localizado: ')
+    var user = fetchUser(username);
+    usersList.push(user);
+}
+console.clear();
 getUser('LukasNatanael');
-// console.log(usersList)
+console.log(usersList);

@@ -1,4 +1,5 @@
 import * as promptSync from 'prompt-sync'
+const prompt = promptSync()
 
 interface User {
     id:           number
@@ -9,10 +10,10 @@ interface User {
     repos_url:    string
 }
 
-let usersList = []
+let usersList:[] = []
+let user:User
 
-async function getUser(username:string) {
-    let user:User
+async function fetchUser(username:string) {
 
     const response = await fetch(`https://api.github.com/users/${username}`)
     .then( response => response.json() )
@@ -31,10 +32,14 @@ async function getUser(username:string) {
         public_repos: response.public_repos,
         repos_url: response.repos_url,
     }
-    // not working
-    usersList.push(user)
-    console.log(user)
+    return user
 }
 
-getUser( 'LukasNatanael' )
-// console.log(usersList)
+function getUser(username:string) {
+    // const user = prompt('Informe um username a ser localizado: ')
+    const user = fetchUser(username)
+    usersList.push(user)
+}
+console.clear()
+getUser('LukasNatanael')
+console.log(usersList)
