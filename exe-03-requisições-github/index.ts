@@ -35,7 +35,7 @@ async function fetchUser(username:string) {
         )
         // showAllUser()
         // showRepositoresTotal()
-        showTopFive()
+        // showTopFive()
 
     }
 }
