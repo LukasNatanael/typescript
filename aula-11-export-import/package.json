@@ -1,0 +1,20 @@
+{
+  "name": "aula-11-export-import",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "loadash": "^1.0.0",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.7"
+  }
+}
