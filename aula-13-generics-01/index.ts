@@ -38,3 +38,33 @@ const xWing:Fighter = {
 
 const copy1 = cloneShip( falcon, 'Milano',    'Peter' )
 const copy2 = cloneShip( xWing,  'Black One', 'Poe' )
+
+interface EnemyShip extends Ship{
+    flag?: string
+}
+
+const enemyCopy  = cloneShip( falcon, 'Enemy', 'Enemy' )
+// aqui eu deixo explicito que irei clonar uma nave inimiga logo, posso adicionar uma bandeira a nave
+const enemyCopy2 = cloneShip<EnemyShip>( falcon, 'Enemy', 'Enemy' )
+
+// não me permite adicionar uma bandeira pois, ela foi clonada do tipo Ship
+enemyCopy.flag = 'Imperial' // irá gerar erro
+
+// me permite adicionar uma bandeira pois, ela foi clonada explicitamente do tipo EnemyShip
+enemyCopy2.flag = 'Imperial'
+
+// Posso implementar em classes da mesma maneira
+
+class Pilot<ShipType> {
+    name: string
+    ship: ShipType
+
+    constructor( name:string, ship:ShipType ) {
+        this.name = name
+        this.ship = ship
+    }
+}
+
+// me permite explicitar o tipo, embora não seja necessário
+const han = new Pilot( 'Han', falcon )
+const luke = new Pilot<Fighter>( 'Luke Skywalker', xWing )
